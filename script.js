@@ -128,7 +128,7 @@ const startScrolling = async () => {
   try {
     // Wait for the scroll element to be available
     const scrollElement = await waitForElement(
-      ".simplebar-scroll-content",
+      '[class*="root-scrollable__content"]',
       15000
     );
     console.log("Scroll element found");
@@ -151,7 +151,7 @@ const startScrolling = async () => {
 
         // Check if we still have the scroll element
         const currentScrollElement = document.querySelector(
-          ".simplebar-scroll-content"
+          '[class*="root-scrollable__content"]'
         );
         if (!currentScrollElement) {
           console.warn("Scroll element not found, trying again...");
@@ -186,7 +186,9 @@ const startScrolling = async () => {
 
 const finalizeScrolling = async () => {
   try {
-    const scrollElement = document.querySelector(".simplebar-scroll-content");
+    const scrollElement = document.querySelector(
+      '[class*="root-scrollable__content"]'
+    );
     if (scrollElement) {
       await scrollToTop(scrollElement);
     }
